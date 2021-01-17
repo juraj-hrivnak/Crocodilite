@@ -1,3 +1,8 @@
+@file:Suppress("Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator",
+    "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator",
+    "Annotator", "Annotator", "Annotator", "Annotator", "Annotator"
+)
+
 package io.github.proudust.minecraftforgekotlintemplate
 
 import net.minecraft.block.Block
