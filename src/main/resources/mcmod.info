@@ -1,13 +1,15 @@
 [
     {
-        "modid": "minecraft-forge-kotlin-template",
-        "name": "Minecraft Forge Kotlin Template",
-        "description": "injection point type '%s'",
+        "modid": "underdogitems",
+        "name": "Underdog Items",
+        "description": "Some good stuff",
         "version": "${version}",
         "mcversion": "${mcversion}",
         "url": "",
         "updateUrl": "",
-        "authorList": [],
+        "authorList": [
+            "Teksturepako"
+        ],
         "credits": "",
         "logoFile": "",
         "screenshots": [],

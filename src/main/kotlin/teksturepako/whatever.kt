@@ -1,12 +1,8 @@
-@file:Suppress("Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator",
-    "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator", "Annotator",
-    "Annotator", "Annotator", "Annotator", "Annotator", "Annotator"
-)
-
-package io.github.proudust.minecraftforgekotlintemplate
+package teksturepako
 
 import net.minecraft.block.Block
 import net.minecraft.item.Item
+import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -21,9 +17,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
 object MinecraftForgeKotlinTemplate {
-    const val MOD_ID = "minecraft-forge-kotlin-template"
-    const val MOD_NAME = "Minecraft Forge Kotlin Template"
-    const val VERSION = "2019.1-1.2.23"
+    const val MOD_ID = "underdogitems"
+    const val MOD_NAME = "Underdog Items"
+    const val VERSION = "1.0"
 
     /**
      * This is the first initialization event. Register tile entities here.
@@ -31,7 +27,6 @@ object MinecraftForgeKotlinTemplate {
      */
     @Mod.EventHandler
     fun preinit(event: FMLPreInitializationEvent) {
-
     }
 
     /**
@@ -54,36 +49,19 @@ object MinecraftForgeKotlinTemplate {
      * This is a special class that listens to registry events, to allow creation of mod blocks and items at the proper time.
      */
     @Mod.EventBusSubscriber
-    object ObjectRegistryHandler {
-        /**
-         * Listen for the register event for creating custom items
-         */
+    object RegistryHandler {
+        @JvmStatic
         @SubscribeEvent
         fun addItems(event: RegistryEvent.Register<Item>) {
-            /*
-            event.registry.register(ItemBlock(MySpecialBlock).setRegistryName(MOD_ID, "myBlock"))
-            event.registry.register(MySpecialItem.setRegistryName(MOD_ID, "mySpecialItem"))
-            */
+            event.registry.registerAll(itemCompressedCobble, itemBlockCompressedCobble)
+
         }
 
-        /**
-         * Listen for the register event for creating custom blocks
-         */
+        @JvmStatic
         @SubscribeEvent
         fun addBlocks(event: RegistryEvent.Register<Block>) {
-            /*
-            event.registry.register(MySpecialBlock.setRegistryName(MOD_ID, "mySpecialBlock"))
-            */
+            event.registry.register(blockCompressedCobble)
+
         }
     }
-
-    /* EXAMPLE ITEM AND BLOCK - you probably want these in separate files
-    object MySpecialItem : Item() {
-
-    }
-
-    object MySpecialBlock : Block() {
-
-    }
-    */
 }
