@@ -1,4 +1,4 @@
-package teksturepako
+package teksturepako.blocks
 
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
