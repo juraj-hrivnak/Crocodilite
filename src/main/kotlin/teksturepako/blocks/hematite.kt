@@ -10,16 +10,16 @@ import net.minecraft.item.ItemBlock
 import java.util.*
 
 
-val itemCompressedCobble : Item = object : Item() {
+val itemCrocodilite : Item = object : Item() {
     init {
-        setRegistryName("item_kokos")
+        setRegistryName("crocodilite")
         creativeTab = CreativeTabs.BUILDING_BLOCKS
     }
 }
 
-val blockCompressedCobble: Block = object : Block(Material.ROCK) {
+val blockCrocodilite: Block = object : Block(Material.ROCK) {
     init {
-        setRegistryName("compressed_cobblestone")
+        setRegistryName("crocodilite_block")
         creativeTab = CreativeTabs.BUILDING_BLOCKS
         setHardness(3F)
         setResistance(15F)
@@ -27,13 +27,12 @@ val blockCompressedCobble: Block = object : Block(Material.ROCK) {
     }
 
     override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item {
-        return itemCompressedCobble
+        return itemCrocodilite
     }
 }
 
-val itemBlockCompressedCobble : ItemBlock = object : ItemBlock(blockCompressedCobble) {
+val itemBlockCrocodilite : ItemBlock = object : ItemBlock(blockCrocodilite) {
     init {
-        setRegistryName("compressed_cobblestone")
-        creativeTab = CreativeTabs.BUILDING_BLOCKS
+        setRegistryName("crocodilite_block")
     }
 }
