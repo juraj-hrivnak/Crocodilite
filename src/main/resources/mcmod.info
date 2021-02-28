@@ -1,7 +1,7 @@
 [
     {
-        "modid": "underdogitems",
-        "name": "Underdog Items",
+        "modid": "crocodilite",
+        "name": "Crocodilite",
         "description": "Some good stuff",
         "version": "${version}",
         "mcversion": "${mcversion}",
