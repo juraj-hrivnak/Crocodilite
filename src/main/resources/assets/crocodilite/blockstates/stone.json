@@ -1,0 +1,22 @@
+{
+    "uvlock": false,
+    "variants": {
+        "normal": [
+            {
+                "model": "crocodilite:ground_stone"
+            },
+            {
+                "model": "crocodilite:ground_stone",
+                "y": 90
+            },
+            {
+                "model": "crocodilite:ground_stone",
+                "y": 180
+            },
+            {
+                "model": "crocodilite:ground_stone",
+                "y": 270
+            }
+        ]
+    }
+}
