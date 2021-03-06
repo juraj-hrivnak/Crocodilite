@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
 
 // setRegistryName("coconut_item") doesn't need MOD_ID, It gets it automatically from the current mod that is loading
-// the same thing is if you write: this.registryName = ResourceLocation(MOD_ID, "coconut_item")
+// It is the same thing is if you write: this.registryName = ResourceLocation(MOD_ID, "coconut_item")
 
 val item : Item = object : Item() {
     init {
@@ -42,7 +42,7 @@ val block: Block = object : Block(Material.GLASS) {
         soundType = SoundType.STONE
     }
 
-    // This make sure that snow will not generate on the block
+    // This make sure that snow will be not generating on the block
     override fun getBlockFaceShape(
         worldIn: IBlockAccess,
         state: IBlockState,
