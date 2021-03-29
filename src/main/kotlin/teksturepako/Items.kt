@@ -61,7 +61,7 @@ val block: Block = object : Block(Material.GLASS) {
         return AxisAlignedBB(0.2, 0.0, 0.2, 0.8, 0.06, 0.8)
     }
 
-    // Rendering of blocks behind
+    // Rendering of the blocks behind
     @Deprecated("")
     override fun isOpaqueCube(state: IBlockState): Boolean {
         return false
