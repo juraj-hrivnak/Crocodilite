@@ -1,1 +1,2 @@
-# Misc items for underdog modpack
+![GitHub Logo](crocodilite.jpeg)
+## A simple minecraft mod.
