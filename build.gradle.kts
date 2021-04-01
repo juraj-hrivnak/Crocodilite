@@ -51,13 +51,19 @@ configure<UserBaseExtension> {
 repositories {
     jcenter()
     mavenCentral()
+//  Forgelin
     maven(url = "http://maven.shadowfacts.net/")
+//  Geckolib
+//    maven(url = "https://repo.repsy.io/mvn/gandiber/geckolib")
 }
 
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     compile("net.shadowfacts:Forgelin:1.8.4")
+
+//    compile("software.bernie.geckolib:forge-1.12.2-geckolib:3.0.0-beta.7")
 }
+
 
 // processResources
 val Project.minecraft: UserBaseExtension

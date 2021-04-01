@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
     dependencies = Crocodilite.DEPENDENCIES,
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
+
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
