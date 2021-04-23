@@ -1,2 +1,2 @@
 ![GitHub Logo](crocodilite.jpeg)
-## A simple minecraft mod.
+Minecraft mod.
