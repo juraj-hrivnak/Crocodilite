@@ -6,13 +6,17 @@ import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockFaceShape
 import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
+import net.minecraft.util.EnumHand
+import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
+import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
@@ -30,17 +34,39 @@ val item : Item = object : Item() {
 }
 
 
-val block: Block = object : Block(Material.GLASS) {
+val block : Block = object : Block(Material.GLASS) {
     init {
         translationKey = "crocodilite.stone"
         setRegistryName("stone")
 
-        setHardness(3F)
-        setResistance(15F)
+        setHardness(0F)
+        setResistance(0F)
 
         creativeTab = CreativeTabs.BUILDING_BLOCKS
         soundType = SoundType.STONE
     }
+
+    override fun onBlockActivated(
+        worldIn: World,
+        pos: BlockPos?,
+        state: IBlockState,
+        playerIn: EntityPlayer?,
+        hand: EnumHand?,
+        heldItem: EnumFacing?,
+        side: Float,
+        hitX: Float,
+        hitY: Float
+    ): Boolean {
+        worldIn.setBlockToAir(pos)
+        this.playClickSound(playerIn, worldIn, pos)
+        worldIn.markBlockRangeForRenderUpdate(pos, pos)
+        worldIn.scheduleUpdate(pos, this, tickRate(worldIn))
+        playerIn!!.swingArm(EnumHand.MAIN_HAND)
+        this.dropBlockAsItem(worldIn, pos, state, 0);
+        return true
+    }
+
+    protected fun playClickSound(player: EntityPlayer?, worldIn: World?, pos: BlockPos?) {}
 
     // This make sure that snow will be not generating on the block
     override fun getBlockFaceShape(
@@ -75,8 +101,12 @@ val block: Block = object : Block(Material.GLASS) {
         return false
     }
 
-    override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item {
-        return item
+    /*
+        Very cool thing.
+        Gets an item from registry using resource location.
+     */
+    override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item? {
+        return Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))
     }
 }
 
