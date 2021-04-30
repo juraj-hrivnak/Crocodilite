@@ -46,6 +46,10 @@ val block : Block = object : Block(Material.GLASS) {
         soundType = SoundType.STONE
     }
 
+    override fun isReplaceable(worldIn: IBlockAccess, pos: BlockPos): Boolean {
+        return true
+    }
+
     override fun onBlockActivated(
         worldIn: World,
         pos: BlockPos?,
