@@ -8,6 +8,7 @@ import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.SoundEvents
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
@@ -49,6 +50,7 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
         worldIn.scheduleUpdate(pos, this, tickRate(worldIn))
 
         playerIn!!.swingArm(EnumHand.MAIN_HAND)
+        playerIn!!.playSound(SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, 1.0f, 1.0f)
 
         this.launchDropAsEntity(worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))))
         return true
