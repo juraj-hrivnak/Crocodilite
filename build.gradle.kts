@@ -80,7 +80,7 @@ repositories {
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:1.12.2-14.23.5.2855")
+    "minecraft"("net.minecraftforge:forge:1.12.2-14.23.5.2860")
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     compile("net.shadowfacts:Forgelin:1.8.4")
 }

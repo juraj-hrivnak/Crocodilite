@@ -57,11 +57,11 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
     fun launchDropAsEntity(world: World, pos: BlockPos, stack: ItemStack) {
         if (!world.isRemote) {
             val posX = pos.x + 0.5
-            val posY = pos.y + 0.065
+            val posY = pos.y + 0.051
             val posZ = pos.z + 0.5
             val entityitem = EntityItem(world, posX, posY, posZ, stack)
             entityitem.motionX = 0.0
-            entityitem.motionY = 0.05
+            entityitem.motionY = 0.0
             entityitem.motionZ = 0.0
             entityitem.setDefaultPickupDelay()
             world.spawnEntity(entityitem)
