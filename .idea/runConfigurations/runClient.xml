@@ -11,7 +11,7 @@
       <env name="MOD_CLASSES" value="$PROJECT_DIR$\build\resources\main;$PROJECT_DIR$\build\classes\java\main;$PROJECT_DIR$\build\classes\scala\main;$PROJECT_DIR$\build\classes\kotlin\main"/>
       <env name="mainClass" value="net.minecraft.launchwrapper.Launch"/>
       <env name="MCP_MAPPINGS" value="stable_39-1.12"/>
-      <env name="FORGE_VERSION" value="14.23.5.2855"/>
+      <env name="FORGE_VERSION" value="14.23.5.2860"/>
       <env name="assetIndex" value="1.12"/>
       <env name="assetDirectory" value="C:\Users\user\.gradle\caches\forge_gradle\assets"/>
       <env name="nativesDirectory" value="$PROJECT_DIR$\build\natives"/>

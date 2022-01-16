@@ -57,7 +57,7 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
     fun launchDropAsEntity(world: World, pos: BlockPos, stack: ItemStack) {
         if (!world.isRemote) {
             val posX = pos.x + 0.5
-            val posY = pos.y + 0.051
+            val posY = pos.y + 0.062
             val posZ = pos.z + 0.5
             val entityitem = EntityItem(world, posX, posY, posZ, stack)
             entityitem.motionX = 0.0
