@@ -27,15 +27,15 @@ import java.util.*
 // setRegistryName("coconut_item") doesn't need MOD_ID, It gets it automatically from the current mod that is loading
 // It is the same thing is if you write: this.registryName = ResourceLocation(MOD_ID, "coconut_item")
 
-val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
+val BlockStick : Block = object : Block(Material.GLASS) {
     init {
-        translationKey = "crocodilite.quartzite_rock"
-        setRegistryName("quartzite_rock")
+        translationKey = "crocodilite.stick"
+        setRegistryName("stick")
 
         setHardness(0F)
         setResistance(0F)
 
-        soundType = SoundType.STONE
+        soundType = SoundType.WOOD
     }
 
     override fun isReplaceable(worldIn: IBlockAccess, pos: BlockPos): Boolean {
@@ -51,7 +51,7 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
         playerIn!!.swingArm(EnumHand.MAIN_HAND)
         playerIn!!.playSound(SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, 1.0f, 1.0f)
 
-        this.launchDropAsEntity(worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))))
+        this.launchDropAsEntity(worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(ResourceLocation("minecraft", "stick"))))
         return true
     }
 
@@ -100,13 +100,13 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
         Gets an item from registry using resource location.
         */
     override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item? {
-        return Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))
+        return Item.REGISTRY.getObject(ResourceLocation("minecraft", "stick"))
     }
 }
 
-val ItemBlockQuartziteRock : ItemBlock = object : ItemBlock(BlockQuartziteRock) {
+val ItemBlockStick : ItemBlock = object : ItemBlock(BlockStick) {
     init {
-        this.registryName = ResourceLocation("divergentunderground", "rock_stone")
+        this.registryName = ResourceLocation("minecraft", "stick")
     }
 }
 

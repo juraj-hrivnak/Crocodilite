@@ -46,7 +46,8 @@ object Crocodilite {
         @SubscribeEvent
         fun registerItems(event: RegistryEvent.Register<Item>) {
             event.registry.registerAll (
-                ItemBlockQuartziteRock
+                ItemBlockQuartziteRock,
+                ItemBlockStick
             )
         }
 
@@ -54,7 +55,8 @@ object Crocodilite {
         @SubscribeEvent
         fun registerBlocks(event: RegistryEvent.Register<Block>) {
             event.registry.registerAll (
-                BlockQuartziteRock
+                BlockQuartziteRock,
+                BlockStick
             )
         }
 
@@ -64,6 +66,9 @@ object Crocodilite {
         fun registerModels(event: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(ItemBlockQuartziteRock,
                 0, ModelResourceLocation(ItemBlockQuartziteRock.registryName ?: return, "inventory")
+            )
+            ModelLoader.setCustomModelResourceLocation(ItemBlockStick,
+                0, ModelResourceLocation(ItemBlockStick.registryName ?: return, "inventory")
             )
         }
     }

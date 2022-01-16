@@ -1,0 +1,22 @@
+{
+    "uvlock": false,
+    "variants": {
+        "normal": [
+            {
+                "model": "crocodilite:branch_model"
+            },
+            {
+                "model": "crocodilite:branch_model",
+                "y": 90
+            },
+            {
+                "model": "crocodilite:branch_model",
+                "y": 180
+            },
+            {
+                "model": "crocodilite:branch_model",
+                "y": 270
+            }
+        ]
+    }
+}
