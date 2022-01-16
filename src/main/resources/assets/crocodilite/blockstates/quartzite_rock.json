@@ -3,18 +3,18 @@
     "variants": {
         "normal": [
             {
-                "model": "crocodilite:ground_stone"
+                "model": "crocodilite:quartzite_rock"
             },
             {
-                "model": "crocodilite:ground_stone",
+                "model": "crocodilite:quartzite_rock",
                 "y": 90
             },
             {
-                "model": "crocodilite:ground_stone",
+                "model": "crocodilite:quartzite_rock",
                 "y": 180
             },
             {
-                "model": "crocodilite:ground_stone",
+                "model": "crocodilite:quartzite_rock",
                 "y": 270
             }
         ]

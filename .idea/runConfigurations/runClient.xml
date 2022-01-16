@@ -5,7 +5,7 @@
     <option name="VM_PARAMETERS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP"/>
     <option name="PROGRAM_PARAMETERS" value=""/>
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$\run"/>
-    <module name="UnderdogItems.main"/>
+    <module name="Crocodilite.main"/>
     <envs>
       <env name="MCP_TO_SRG" value="$PROJECT_DIR$\build\createSrgToMcp\output.srg"/>
       <env name="MOD_CLASSES" value="$PROJECT_DIR$\build\resources\main;$PROJECT_DIR$\build\classes\java\main;$PROJECT_DIR$\build\classes\scala\main;$PROJECT_DIR$\build\classes\kotlin\main"/>

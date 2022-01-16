@@ -1,4 +1,3 @@
 
 # To get this to work you must have pack.mcmeta, unless it will not work!!
-item.crocodilite.coconut_item.name=Coconut Item
-tile.crocodilite.stone.name=Stone
+tile.crocodilite.quartzite_rock.name=Quartzite Rock

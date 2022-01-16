@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
     name = Crocodilite.MOD_NAME,
     version = Crocodilite.VERSION,
     dependencies = Crocodilite.DEPENDENCIES,
+    acceptedMinecraftVersions = Crocodilite.ACCEPTED_MINECRAFT_VERSIONS,
     modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
 
@@ -30,14 +31,14 @@ object Crocodilite {
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
 
     @Mod.EventHandler
-    fun preinit(event: FMLPreInitializationEvent) {
-    }
+    fun preinit(event: FMLPreInitializationEvent) {}
+
     @Mod.EventHandler
-    fun init(event: FMLInitializationEvent) {
-    }
+    fun init(event: FMLInitializationEvent) {}
+
     @Mod.EventHandler
-    fun postinit(event: FMLPostInitializationEvent) {
-    }
+    fun postinit(event: FMLPostInitializationEvent) {}
+
     @Mod.EventBusSubscriber
     object RegistryHandler {
 
@@ -45,8 +46,7 @@ object Crocodilite {
         @SubscribeEvent
         fun registerItems(event: RegistryEvent.Register<Item>) {
             event.registry.registerAll (
-                item,
-                itemBlock
+                ItemBlockQuartziteRock
             )
         }
 
@@ -54,7 +54,7 @@ object Crocodilite {
         @SubscribeEvent
         fun registerBlocks(event: RegistryEvent.Register<Block>) {
             event.registry.registerAll (
-                block
+                BlockQuartziteRock
             )
         }
 
@@ -62,13 +62,9 @@ object Crocodilite {
         @JvmStatic
         @SubscribeEvent
         fun registerModels(event: ModelRegistryEvent) {
-            ModelLoader.setCustomModelResourceLocation(item,
-                0, ModelResourceLocation(item.registryName ?: return, "inventory")
-            )
-            ModelLoader.setCustomModelResourceLocation(itemBlock,
-                0, ModelResourceLocation(itemBlock.registryName ?: return, "inventory")
+            ModelLoader.setCustomModelResourceLocation(ItemBlockQuartziteRock,
+                0, ModelResourceLocation(ItemBlockQuartziteRock.registryName ?: return, "inventory")
             )
         }
-
     }
 }

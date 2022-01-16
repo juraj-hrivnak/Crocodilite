@@ -6,9 +6,11 @@ import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockFaceShape
 import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
+import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
@@ -24,20 +26,10 @@ import java.util.*
 // setRegistryName("coconut_item") doesn't need MOD_ID, It gets it automatically from the current mod that is loading
 // It is the same thing is if you write: this.registryName = ResourceLocation(MOD_ID, "coconut_item")
 
-val item : Item = object : Item() {
+val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
     init {
-        translationKey = "crocodilite.coconut_item"
-        setRegistryName("coconut_item")
-
-        creativeTab = CreativeTabs.BUILDING_BLOCKS
-    }
-}
-
-
-val block : Block = object : Block(Material.GLASS) {
-    init {
-        translationKey = "crocodilite.stone"
-        setRegistryName("stone")
+        translationKey = "crocodilite.quartzite_rock"
+        setRegistryName("quartzite_rock")
 
         setHardness(0F)
         setResistance(0F)
@@ -50,34 +42,34 @@ val block : Block = object : Block(Material.GLASS) {
         return true
     }
 
-    override fun onBlockActivated(
-        worldIn: World,
-        pos: BlockPos?,
-        state: IBlockState,
-        playerIn: EntityPlayer?,
-        hand: EnumHand?,
-        heldItem: EnumFacing?,
-        side: Float,
-        hitX: Float,
-        hitY: Float
+    override fun onBlockActivated(worldIn: World, pos: BlockPos?, state: IBlockState, playerIn: EntityPlayer?, hand: EnumHand?, heldItem: EnumFacing?, side: Float, hitX: Float, hitY: Float
     ): Boolean {
         worldIn.setBlockToAir(pos)
-        this.playClickSound(playerIn, worldIn, pos)
         worldIn.markBlockRangeForRenderUpdate(pos, pos)
         worldIn.scheduleUpdate(pos, this, tickRate(worldIn))
+
         playerIn!!.swingArm(EnumHand.MAIN_HAND)
-        this.dropBlockAsItem(worldIn, pos, state, 0);
+
+        this.launchDropAsEntity(worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))))
         return true
     }
 
-    protected fun playClickSound(player: EntityPlayer?, worldIn: World?, pos: BlockPos?) {}
+    fun launchDropAsEntity(world: World, pos: BlockPos, stack: ItemStack) {
+        if (!world.isRemote) {
+            val posX = pos.x + 0.5
+            val posY = pos.y + 0.065
+            val posZ = pos.z + 0.5
+            val entityitem = EntityItem(world, posX, posY, posZ, stack)
+            entityitem.motionX = 0.0
+            entityitem.motionY = 0.05
+            entityitem.motionZ = 0.0
+            entityitem.setDefaultPickupDelay()
+            world.spawnEntity(entityitem)
+        }
+    }
 
     // This make sure that snow will be not generating on the block
-    override fun getBlockFaceShape(
-        worldIn: IBlockAccess,
-        state: IBlockState,
-        pos: BlockPos,
-        face: EnumFacing
+    override fun getBlockFaceShape(worldIn: IBlockAccess, state: IBlockState, pos: BlockPos, face: EnumFacing
     ): BlockFaceShape {
         return BlockFaceShape.BOWL
     }
@@ -97,9 +89,6 @@ val block : Block = object : Block(Material.GLASS) {
         return false
     }
 
-    //    override fun isNormalCube(state: IBlockState, world: IBlockAccess, pos: BlockPos): Boolean {
-    //        return false
-    //    }
     @Deprecated("")
     override fun isFullCube(state: IBlockState): Boolean {
         return false
@@ -108,17 +97,18 @@ val block : Block = object : Block(Material.GLASS) {
     /*
         Very cool thing.
         Gets an item from registry using resource location.
-     */
+        */
     override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item? {
         return Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))
     }
 }
 
-val itemBlock : ItemBlock = object : ItemBlock(block) {
+val ItemBlockQuartziteRock : ItemBlock = object : ItemBlock(BlockQuartziteRock) {
     init {
-        translationKey = "crocodilite.stone"
-        setRegistryName("stone")
+        translationKey = "crocodilite.quartzite_rock"
+        setRegistryName("quartzite_rock")
 
         creativeTab = CreativeTabs.BUILDING_BLOCKS
     }
 }
+
