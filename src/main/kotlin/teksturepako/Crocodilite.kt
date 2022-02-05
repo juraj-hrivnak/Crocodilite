@@ -13,6 +13,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import teksturepako.block.BlockQuartziteRock
+import teksturepako.block.BlockStick
+import teksturepako.block.ItemBlockQuartziteRock
+import teksturepako.block.ItemBlockStick
 
 @Mod(
     modid = Crocodilite.MOD_ID,
@@ -64,10 +68,12 @@ object Crocodilite {
         @JvmStatic
         @SubscribeEvent
         fun registerModels(event: ModelRegistryEvent) {
-            ModelLoader.setCustomModelResourceLocation(ItemBlockQuartziteRock,
+            ModelLoader.setCustomModelResourceLocation(
+                ItemBlockQuartziteRock,
                 0, ModelResourceLocation(ItemBlockQuartziteRock.registryName ?: return, "inventory")
             )
-            ModelLoader.setCustomModelResourceLocation(ItemBlockStick,
+            ModelLoader.setCustomModelResourceLocation(
+                ItemBlockStick,
                 0, ModelResourceLocation(ItemBlockStick.registryName ?: return, "inventory")
             )
         }
