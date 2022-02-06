@@ -30,7 +30,7 @@ import teksturepako.block.ItemBlockStick
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
-    const val VERSION = "1.8"
+    const val VERSION = "1.9"
     const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
 
