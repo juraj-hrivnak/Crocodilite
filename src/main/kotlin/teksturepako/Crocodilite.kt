@@ -17,6 +17,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent
 import net.minecraftforge.client.event.ModelRegistryEvent
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.event.RegistryEvent
+import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
@@ -40,9 +41,11 @@ import teksturepako.block.placeable.*
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
-    const val VERSION = "1.9"
-    const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground"
+    const val VERSION = "2.0"
+    const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:quark"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
+
+    fun isQuarkLoaded() : Boolean = (Loader.isModLoaded("quark"))
 
     @Mod.EventHandler
     fun preinit(event: FMLPreInitializationEvent) {}
@@ -67,6 +70,12 @@ object Crocodilite {
                 ItemBlockQuartziteRock,
                 ItemBlockStick
             )
+            if (isQuarkLoaded()) {
+                event.registry.registerAll (
+                    ItemBlockOvergrownMarble,
+                    ItemBlockOvergrownLimestone
+                )
+            }
         }
 
         @JvmStatic
@@ -80,6 +89,12 @@ object Crocodilite {
                 BlockQuartziteRock,
                 BlockStick
             )
+            if (isQuarkLoaded()) {
+                event.registry.registerAll (
+                    BlockOvergrownMarble,
+                    BlockOvergrownLimestone
+                )
+            }
         }
 
 
@@ -99,6 +114,16 @@ object Crocodilite {
                 ItemBlockOvergrownAndesite,
                 0, ModelResourceLocation(ItemBlockOvergrownAndesite.registryName ?: return, "inventory")
             )
+            if (isQuarkLoaded()) {
+                ModelLoader.setCustomModelResourceLocation(
+                    ItemBlockOvergrownMarble,
+                    0, ModelResourceLocation(ItemBlockOvergrownMarble.registryName ?: return, "inventory")
+                )
+                ModelLoader.setCustomModelResourceLocation(
+                    ItemBlockOvergrownLimestone,
+                    0, ModelResourceLocation(ItemBlockOvergrownLimestone.registryName ?: return, "inventory")
+                )
+            }
 
             ModelLoader.setCustomModelResourceLocation(
                 ItemBlockQuartziteRock,
@@ -125,6 +150,10 @@ object Crocodilite {
             blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownGranite)
             blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownDiorite)
             blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownAndesite)
+            if (isQuarkLoaded()) {
+                blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownMarble)
+                blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownLimestone)
+            }
         }
 
         @SideOnly(Side.CLIENT)
@@ -141,6 +170,11 @@ object Crocodilite {
             itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownGranite)
             itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownDiorite)
             itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownAndesite)
+            if (isQuarkLoaded()) {
+                itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownMarble)
+                itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownLimestone)
+            }
+
         }
     }
 }

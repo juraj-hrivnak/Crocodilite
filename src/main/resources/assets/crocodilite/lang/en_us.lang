@@ -3,6 +3,8 @@
 tile.crocodilite.overgrown_granite.name=Overgrown Granite
 tile.crocodilite.overgrown_diorite.name=Overgrown Diorite
 tile.crocodilite.overgrown_andesite.name=Overgrown Andesite
+tile.crocodilite.overgrown_marble.name=Overgrown Marble
+tile.crocodilite.overgrown_limestone.name=Overgrown Limestone
 
 tile.crocodilite.quartzite_rock.name=Quartzite Rock
 tile.crocodilite.stick.name=Stick
