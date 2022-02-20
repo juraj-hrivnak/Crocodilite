@@ -1,9 +1,5 @@
 {
 	"credit": "Made with Blockbench",
-	"textures": {
-		"particle": "block/stone",
-		"stone": "block/stone"
-	},
 	"elements": [
 		{
 			"name": "Element",
