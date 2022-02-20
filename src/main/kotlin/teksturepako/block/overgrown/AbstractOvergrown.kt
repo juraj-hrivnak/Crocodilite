@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 
-abstract class AbstractOvergrown(name: String) : Block(Material.GRASS) {
+abstract class AbstractOvergrown(name: String) : Block(Material.ROCK) {
 
     init {
         translationKey = "crocodilite.$name"
@@ -27,8 +27,8 @@ abstract class AbstractOvergrown(name: String) : Block(Material.GRASS) {
 
         soundType = SoundType.STONE
         creativeTab = CreativeTabs.BUILDING_BLOCKS
-        this.setHardness(0F)
-        this.setResistance(0F)
+        this.setHardness(1.5F)
+        this.setResistance(2.0F)
 
         defaultState = blockState.baseState
             .withProperty(BlockGrass.SNOWY, false)
@@ -54,6 +54,10 @@ abstract class AbstractOvergrown(name: String) : Block(Material.GRASS) {
     @SideOnly(Side.CLIENT)
     override fun getRenderLayer(): BlockRenderLayer {
         return BlockRenderLayer.CUTOUT_MIPPED
+    }
+
+    override fun getHarvestTool(state: IBlockState): String? {
+        return "pickaxe"
     }
 
     override fun canSustainPlant(
