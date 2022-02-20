@@ -1,7 +1,6 @@
-package teksturepako.block
+package teksturepako.block.placeable
 
 import net.minecraft.block.Block
-import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockFaceShape
 import net.minecraft.block.state.IBlockState
@@ -10,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.Blocks
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.Item
-import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
@@ -24,22 +22,30 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
 
-// setRegistryName("coconut_item") doesn't need MOD_ID, It gets it automatically from the current mod that is loading
-// It is the same thing is if you write: this.registryName = ResourceLocation(MOD_ID, "coconut_item")
 
-val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
+abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
+
     init {
-        translationKey = "crocodilite.quartzite_rock"
-        setRegistryName("quartzite_rock")
+        translationKey = "crocodilite.$name"
+        setRegistryName(name)
 
         setHardness(0F)
         setResistance(0F)
-
-        soundType = SoundType.STONE
     }
+
+    abstract val itemResourceLocation: ResourceLocation
 
     override fun isReplaceable(worldIn: IBlockAccess, pos: BlockPos): Boolean {
         return true
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun getOffsetType(): EnumOffsetType {
+        return EnumOffsetType.XZ
+    }
+
+    override fun getBoundingBox(state: IBlockState, source: IBlockAccess, pos: BlockPos): AxisAlignedBB {
+        return AxisAlignedBB(0.2, 0.0, 0.2, 0.8, 0.06, 0.8).offset(state.getOffset(source, pos))
     }
 
     override fun onBlockActivated(worldIn: World, pos: BlockPos?, state: IBlockState, playerIn: EntityPlayer?, hand: EnumHand?, heldItem: EnumFacing?, side: Float, hitX: Float, hitY: Float
@@ -51,15 +57,15 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
         playerIn!!.swingArm(EnumHand.MAIN_HAND)
         playerIn!!.playSound(SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, 1.0f, 1.0f)
 
-        this.launchDropAsEntity(worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))))
+        this.launchDropAsEntity(state, worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(itemResourceLocation)))
         return true
     }
 
-    fun launchDropAsEntity(world: World, pos: BlockPos, stack: ItemStack) {
+    fun launchDropAsEntity(state: IBlockState, world: World, pos: BlockPos, stack: ItemStack) {
         if (!world.isRemote) {
-            val posX = pos.x + 0.5
+            val posX = pos.x + 0.5 + state.getOffset(world, pos).x
             val posY = pos.y + 0.062
-            val posZ = pos.z + 0.5
+            val posZ = pos.z + 0.5 + state.getOffset(world, pos).z
             val entityitem = EntityItem(world, posX, posY, posZ, stack)
             entityitem.motionX = 0.0
             entityitem.motionY = 0.0
@@ -93,7 +99,7 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
         checkAndDropBlock(worldIn, pos, state)
     }
 
-    // This make sure that snow will be not generating on the block
+    // This will make sure that snow will be not generating on the block
     override fun getBlockFaceShape(worldIn: IBlockAccess, state: IBlockState, pos: BlockPos, face: EnumFacing
     ): BlockFaceShape {
         return BlockFaceShape.BOWL
@@ -102,10 +108,6 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
     @SideOnly(Side.CLIENT)
     override fun getRenderLayer(): BlockRenderLayer {
         return BlockRenderLayer.CUTOUT
-    }
-
-    override fun getBoundingBox(state: IBlockState, source: IBlockAccess, pos: BlockPos): AxisAlignedBB {
-        return AxisAlignedBB(0.2, 0.0, 0.2, 0.8, 0.06, 0.8)
     }
 
     // Rendering of the blocks behind
@@ -119,18 +121,7 @@ val BlockQuartziteRock : Block = object : Block(Material.GLASS) {
         return false
     }
 
-    /*
-        Very cool thing.
-        Gets an item from registry using resource location.
-        */
     override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item? {
-        return Item.REGISTRY.getObject(ResourceLocation("divergentunderground", "rock_stone"))
+        return Item.REGISTRY.getObject(itemResourceLocation)
     }
 }
-
-val ItemBlockQuartziteRock : ItemBlock = object : ItemBlock(BlockQuartziteRock) {
-    init {
-        this.registryName = ResourceLocation("divergentunderground", "rock_stone")
-    }
-}
-

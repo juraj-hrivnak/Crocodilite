@@ -13,10 +13,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import teksturepako.block.BlockQuartziteRock
-import teksturepako.block.BlockStick
-import teksturepako.block.ItemBlockQuartziteRock
-import teksturepako.block.ItemBlockStick
+import teksturepako.block.placeable.BlockQuartziteRock
+import teksturepako.block.placeable.BlockStick
+import teksturepako.block.placeable.ItemBlockQuartziteRock
+import teksturepako.block.placeable.ItemBlockStick
 
 @Mod(
     modid = Crocodilite.MOD_ID,
