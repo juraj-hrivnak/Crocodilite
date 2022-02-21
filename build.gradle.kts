@@ -77,10 +77,15 @@ repositories {
     mavenCentral()
 //  Forgelin
     maven(url = "http://maven.shadowfacts.net/")
+//  CurseForge
+    maven(url = "https://www.cursemaven.com")
 }
 
 dependencies {
     "minecraft"("net.minecraftforge:forge:1.12.2-14.23.5.2860")
+    compile("curse.maven:du-320470:2722140")
+    compile("curse.maven:quark-243121:2924091")
+    compile("curse.maven:autoreglib-250363:2746011")
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     compile("net.shadowfacts:Forgelin:1.8.4")
 }

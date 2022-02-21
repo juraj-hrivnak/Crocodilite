@@ -29,8 +29,8 @@ abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
         translationKey = "crocodilite.$name"
         setRegistryName(name)
 
-        setHardness(0F)
-        setResistance(0F)
+        this.setHardness(0F)
+        this.setResistance(0F)
     }
 
     abstract val itemResourceLocation: ResourceLocation

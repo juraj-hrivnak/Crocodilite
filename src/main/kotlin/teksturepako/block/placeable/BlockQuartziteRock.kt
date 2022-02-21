@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation
 
 
 val BlockQuartziteRock : Block = object : AbstractPlaceableItem("quartzite_rock") {
+
     init {
         soundType = SoundType.STONE
     }

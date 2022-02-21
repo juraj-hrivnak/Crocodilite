@@ -41,7 +41,7 @@ import teksturepako.block.placeable.*
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
-    const val VERSION = "2.0"
+    const val VERSION = "2.1"
     const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:quark"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
 
@@ -59,80 +59,71 @@ object Crocodilite {
     @Mod.EventBusSubscriber
     object RegistryHandler {
 
+        val modItems = arrayOf(
+            ItemBlockOvergrownGranite,
+            ItemBlockOvergrownDiorite,
+            ItemBlockOvergrownAndesite,
+
+            ItemBlockQuartziteRock,
+            ItemBlockStick
+        )
+
+        val modItemsQuark = arrayOf(
+            ItemBlockOvergrownMarble,
+            ItemBlockOvergrownLimestone
+        )
+
+        val modBlocks = arrayOf(
+            BlockOvergrownGranite,
+            BlockOvergrownDiorite,
+            BlockOvergrownAndesite,
+
+            BlockQuartziteRock,
+            BlockStick
+        )
+
+        val modBlocksQuark = arrayOf(
+            BlockOvergrownMarble,
+            BlockOvergrownLimestone
+        )
+
+
         @JvmStatic
         @SubscribeEvent
         fun registerItems(event: RegistryEvent.Register<Item>) {
-            event.registry.registerAll (
-                ItemBlockOvergrownGranite,
-                ItemBlockOvergrownDiorite,
-                ItemBlockOvergrownAndesite,
-
-                ItemBlockQuartziteRock,
-                ItemBlockStick
-            )
-            if (isQuarkLoaded()) {
-                event.registry.registerAll (
-                    ItemBlockOvergrownMarble,
-                    ItemBlockOvergrownLimestone
-                )
+            for (item in modItems) {
+                event.registry.register(item)
+            }
+            if (isQuarkLoaded()) for (item in modItemsQuark) {
+                event.registry.register(item)
             }
         }
 
         @JvmStatic
         @SubscribeEvent
         fun registerBlocks(event: RegistryEvent.Register<Block>) {
-            event.registry.registerAll (
-                BlockOvergrownGranite,
-                BlockOvergrownDiorite,
-                BlockOvergrownAndesite,
-
-                BlockQuartziteRock,
-                BlockStick
-            )
-            if (isQuarkLoaded()) {
-                event.registry.registerAll (
-                    BlockOvergrownMarble,
-                    BlockOvergrownLimestone
-                )
+            for (block in modBlocks) {
+                event.registry.register(block)
+            }
+            if (isQuarkLoaded()) for (block in modBlocksQuark) {
+                event.registry.register(block)
             }
         }
-
 
         @SideOnly(Side.CLIENT)
         @JvmStatic
         @SubscribeEvent
         fun registerModels(event: ModelRegistryEvent) {
-            ModelLoader.setCustomModelResourceLocation(
-                ItemBlockOvergrownGranite,
-                0, ModelResourceLocation(ItemBlockOvergrownGranite.registryName ?: return, "inventory")
-            )
-            ModelLoader.setCustomModelResourceLocation(
-                ItemBlockOvergrownDiorite,
-                0, ModelResourceLocation(ItemBlockOvergrownDiorite.registryName ?: return, "inventory")
-            )
-            ModelLoader.setCustomModelResourceLocation(
-                ItemBlockOvergrownAndesite,
-                0, ModelResourceLocation(ItemBlockOvergrownAndesite.registryName ?: return, "inventory")
-            )
-            if (isQuarkLoaded()) {
+            for (item in modItems) {
                 ModelLoader.setCustomModelResourceLocation(
-                    ItemBlockOvergrownMarble,
-                    0, ModelResourceLocation(ItemBlockOvergrownMarble.registryName ?: return, "inventory")
-                )
-                ModelLoader.setCustomModelResourceLocation(
-                    ItemBlockOvergrownLimestone,
-                    0, ModelResourceLocation(ItemBlockOvergrownLimestone.registryName ?: return, "inventory")
+                    item, 0, ModelResourceLocation(item.registryName ?: return, "inventory")
                 )
             }
-
-            ModelLoader.setCustomModelResourceLocation(
-                ItemBlockQuartziteRock,
-                0, ModelResourceLocation(ItemBlockQuartziteRock.registryName ?: return, "inventory")
-            )
-            ModelLoader.setCustomModelResourceLocation(
-                ItemBlockStick,
-                0, ModelResourceLocation(ItemBlockStick.registryName ?: return, "inventory")
-            )
+            if (isQuarkLoaded()) for (item in modItemsQuark) {
+                ModelLoader.setCustomModelResourceLocation(
+                    item, 0, ModelResourceLocation(item.registryName ?: return, "inventory")
+                )
+            }
         }
 
         @SideOnly(Side.CLIENT)
