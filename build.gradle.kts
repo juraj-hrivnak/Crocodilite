@@ -86,6 +86,8 @@ dependencies {
     compile("curse.maven:du-320470:2722140")
     compile("curse.maven:quark-243121:2924091")
     compile("curse.maven:autoreglib-250363:2746011")
+    compile("curse.maven:dynamictrees-252818:3613721")
+
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     compile("net.shadowfacts:Forgelin:1.8.4")
 }

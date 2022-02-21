@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import teksturepako.block.overgrown.*
 import teksturepako.block.placeable.*
 
@@ -42,7 +43,7 @@ object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
     const val VERSION = "2.1"
-    const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:quark"
+    const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:quark;after:dynamictrees"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
 
     fun isQuarkLoaded() : Boolean = (Loader.isModLoaded("quark"))
@@ -107,6 +108,14 @@ object Crocodilite {
             }
             if (isQuarkLoaded()) for (block in modBlocksQuark) {
                 event.registry.register(block)
+            }
+
+            DirtHelper.registerSoil(BlockOvergrownGranite, DirtHelper.DIRTLIKE);
+            DirtHelper.registerSoil(BlockOvergrownDiorite, DirtHelper.DIRTLIKE);
+            DirtHelper.registerSoil(BlockOvergrownAndesite, DirtHelper.DIRTLIKE);
+            if (isQuarkLoaded()) {
+                DirtHelper.registerSoil(BlockOvergrownMarble, DirtHelper.DIRTLIKE);
+                DirtHelper.registerSoil(BlockOvergrownLimestone, DirtHelper.DIRTLIKE);
             }
         }
 
