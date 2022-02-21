@@ -16,6 +16,7 @@ import net.minecraftforge.common.EnumPlantType
 import net.minecraftforge.common.IPlantable
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import panda.divergentunderground.DivergentUnderground
 import java.util.*
 
 
@@ -26,7 +27,7 @@ abstract class AbstractOvergrown(name: String, val block: Block) : Block(Materia
         setRegistryName(name)
 
         soundType = SoundType.STONE
-        creativeTab = CreativeTabs.BUILDING_BLOCKS
+        creativeTab = DivergentUnderground.Tab
         this.setHardness(1.5F)
         this.setResistance(2.0F)
         this.tickRandomly = true
@@ -120,7 +121,7 @@ abstract class AbstractOvergrownItemBlock(name: String, block: Block) : ItemBloc
         translationKey = "crocodilite.$name"
         setRegistryName(name)
 
-        creativeTab = CreativeTabs.BUILDING_BLOCKS
+        creativeTab = DivergentUnderground.Tab
     }
 
 }
