@@ -47,6 +47,7 @@ object Crocodilite {
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
 
     fun isQuarkLoaded() : Boolean = (Loader.isModLoaded("quark"))
+    fun isDynamicTreesLoaded() : Boolean = (Loader.isModLoaded("dynamictrees"))
 
     @Mod.EventHandler
     fun preinit(event: FMLPreInitializationEvent) {}
@@ -110,12 +111,14 @@ object Crocodilite {
                 event.registry.register(block)
             }
 
-            DirtHelper.registerSoil(BlockOvergrownGranite, DirtHelper.DIRTLIKE);
-            DirtHelper.registerSoil(BlockOvergrownDiorite, DirtHelper.DIRTLIKE);
-            DirtHelper.registerSoil(BlockOvergrownAndesite, DirtHelper.DIRTLIKE);
-            if (isQuarkLoaded()) {
-                DirtHelper.registerSoil(BlockOvergrownMarble, DirtHelper.DIRTLIKE);
-                DirtHelper.registerSoil(BlockOvergrownLimestone, DirtHelper.DIRTLIKE);
+            if (isDynamicTreesLoaded()) {
+                DirtHelper.registerSoil(BlockOvergrownGranite, DirtHelper.DIRTLIKE)
+                DirtHelper.registerSoil(BlockOvergrownDiorite, DirtHelper.DIRTLIKE)
+                DirtHelper.registerSoil(BlockOvergrownAndesite, DirtHelper.DIRTLIKE)
+                if (isQuarkLoaded()) {
+                    DirtHelper.registerSoil(BlockOvergrownMarble, DirtHelper.DIRTLIKE)
+                    DirtHelper.registerSoil(BlockOvergrownLimestone, DirtHelper.DIRTLIKE)
+                }
             }
         }
 
