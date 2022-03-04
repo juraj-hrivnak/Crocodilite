@@ -4,6 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockFaceShape
 import net.minecraft.block.state.IBlockState
+import net.minecraft.client.particle.ParticleManager
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.Blocks
@@ -108,6 +109,11 @@ abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
     @SideOnly(Side.CLIENT)
     override fun getRenderLayer(): BlockRenderLayer {
         return BlockRenderLayer.CUTOUT
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun addDestroyEffects(world: World, pos: BlockPos, manager: ParticleManager): Boolean {
+        return true
     }
 
     // Rendering of the blocks behind
