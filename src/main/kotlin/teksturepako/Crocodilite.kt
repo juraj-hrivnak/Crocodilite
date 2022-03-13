@@ -1,5 +1,6 @@
 package teksturepako
 
+import com.ferreusveritas.dynamictrees.systems.DirtHelper
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
@@ -25,7 +26,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import teksturepako.block.overgrown.*
 import teksturepako.block.placeable.*
 
@@ -43,50 +43,66 @@ object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
     const val VERSION = "2.3"
-    const val DEPENDENCIES = "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:quark;after:dynamictrees"
+    const val DEPENDENCIES =
+        "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:dynamictrees;after:quark"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
 
-    fun isQuarkLoaded() : Boolean = (Loader.isModLoaded("quark"))
-    fun isDynamicTreesLoaded() : Boolean = (Loader.isModLoaded("dynamictrees"))
+    fun isQuarkLoaded(): Boolean = (Loader.isModLoaded("quark"))
+    fun isDynamicTreesLoaded(): Boolean = (Loader.isModLoaded("dynamictrees"))
 
     @Mod.EventHandler
-    fun preinit(event: FMLPreInitializationEvent) {}
+    fun preinit(event: FMLPreInitializationEvent) {
+    }
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {}
 
     @Mod.EventHandler
-    fun postinit(event: FMLPostInitializationEvent) {}
+    fun postinit(event: FMLPostInitializationEvent) {
+
+    }
 
     @Mod.EventBusSubscriber
     object RegistryHandler {
 
-        val modItems = arrayOf(
+        // Items
+        private val modItems = arrayOf(
             ItemBlockOvergrownGranite,
             ItemBlockOvergrownDiorite,
             ItemBlockOvergrownAndesite,
 
             ItemBlockQuartziteRock,
+            ItemBlockGraniteRock,
+            ItemBlockDioriteRock,
+            ItemBlockAndesiteRock,
             ItemBlockStick
         )
-
-        val modItemsQuark = arrayOf(
+        private val modItemsQuark = arrayOf(
             ItemBlockOvergrownMarble,
-            ItemBlockOvergrownLimestone
+            ItemBlockOvergrownLimestone,
+
+            ItemBlockMarbleRock,
+            ItemBlockLimestoneRock
         )
 
-        val modBlocks = arrayOf(
+        // Blocks
+        private val modBlocks = arrayOf(
             BlockOvergrownGranite,
             BlockOvergrownDiorite,
             BlockOvergrownAndesite,
 
             BlockQuartziteRock,
+            BlockGraniteRock,
+            BlockDioriteRock,
+            BlockAndesiteRock,
             BlockStick
         )
-
-        val modBlocksQuark = arrayOf(
+        private val modBlocksQuark = arrayOf(
             BlockOvergrownMarble,
-            BlockOvergrownLimestone
+            BlockOvergrownLimestone,
+
+            BlockMarbleRock,
+            BlockLimestoneRock
         )
 
 
@@ -144,7 +160,7 @@ object Crocodilite {
         fun registerBlockColourHandlers(event: ColorHandlerEvent.Block) {
             val blockColors: BlockColors = event.blockColors
             val grassColourHandler = IBlockColor (
-                fun(state: IBlockState?, blockAccess: IBlockAccess?, pos: BlockPos?, tintIndex: Int): Int {
+                fun(_: IBlockState?, blockAccess: IBlockAccess?, pos: BlockPos?, _: Int): Int {
                     return if (blockAccess != null && pos != null) {
                         BiomeColorHelper.getGrassColorAtPos(blockAccess, pos)
                     } else return ColorizerGrass.getGrassColor(0.5, 1.0)

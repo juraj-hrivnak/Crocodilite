@@ -1,5 +1,5 @@
 
-# To get this to work you must have pack.mcmeta, unless it will not work!!
+# To get this to work you must have pack.mcmeta, unless this will not work!!
 tile.crocodilite.overgrown_granite.name=Overgrown Granite
 tile.crocodilite.overgrown_diorite.name=Overgrown Diorite
 tile.crocodilite.overgrown_andesite.name=Overgrown Andesite
@@ -7,4 +7,9 @@ tile.crocodilite.overgrown_marble.name=Overgrown Marble
 tile.crocodilite.overgrown_limestone.name=Overgrown Limestone
 
 tile.crocodilite.quartzite_rock.name=Quartzite Rock
+tile.crocodilite.rock_granite.name=Granite Rock
+tile.crocodilite.rock_andesite.name=Andesite Rock
+tile.crocodilite.rock_diorite.name=Diorite Rock
+tile.crocodilite.rock_marble.name=Marble Rocke
+tile.crocodilite.rock_limestone.name=Limestone Rocke
 tile.crocodilite.stick.name=Stick

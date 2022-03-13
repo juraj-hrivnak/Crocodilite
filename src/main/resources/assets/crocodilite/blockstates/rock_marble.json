@@ -2,8 +2,8 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "particle": "blocks/stone",
-            "stone": "blocks/stone"
+            "particle": "quark:blocks/stone_marble",
+            "stone": "quark:blocks/stone_marble"
         }
     },
     "uvlock": false,

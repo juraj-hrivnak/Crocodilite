@@ -1,6 +1,7 @@
 package teksturepako.block.placeable
 
 import net.minecraft.block.Block
+import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockFaceShape
 import net.minecraft.block.state.IBlockState
@@ -10,11 +11,11 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.Blocks
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.Item
+import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
-import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
@@ -24,17 +25,18 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
 
 
-abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
+abstract class AbstractPlaceableItem(name: String, val item: Item, sound: SoundType) : Block(Material.GLASS) {
 
     init {
         translationKey = "crocodilite.$name"
         setRegistryName(name)
 
+        soundType = sound
         this.setHardness(0F)
         this.setResistance(0F)
-    }
 
-    abstract val itemResourceLocation: ResourceLocation
+        creativeTab = item.creativeTab
+    }
 
     override fun isReplaceable(worldIn: IBlockAccess, pos: BlockPos): Boolean {
         return true
@@ -49,16 +51,25 @@ abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
         return AxisAlignedBB(0.2, 0.0, 0.2, 0.8, 0.06, 0.8).offset(state.getOffset(source, pos))
     }
 
-    override fun onBlockActivated(worldIn: World, pos: BlockPos?, state: IBlockState, playerIn: EntityPlayer?, hand: EnumHand?, heldItem: EnumFacing?, side: Float, hitX: Float, hitY: Float
+    override fun onBlockActivated(
+        worldIn: World,
+        pos: BlockPos,
+        state: IBlockState,
+        playerIn: EntityPlayer?,
+        hand: EnumHand?,
+        heldItem: EnumFacing?,
+        side: Float,
+        hitX: Float,
+        hitY: Float
     ): Boolean {
         worldIn.setBlockToAir(pos)
         worldIn.markBlockRangeForRenderUpdate(pos, pos)
         worldIn.scheduleUpdate(pos, this, tickRate(worldIn))
 
         playerIn!!.swingArm(EnumHand.MAIN_HAND)
-        playerIn!!.playSound(SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, 1.0f, 1.0f)
+        playerIn.playSound(SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, 1.0f, 1.0f)
 
-        this.launchDropAsEntity(state, worldIn, pos!!, ItemStack(Item.REGISTRY.getObject(itemResourceLocation)))
+        this.launchDropAsEntity(state, worldIn, pos, ItemStack(item))
         return true
     }
 
@@ -76,24 +87,24 @@ abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
         }
     }
 
-    fun canBlockStay(worldIn: World, pos: BlockPos, state: IBlockState): Boolean {
+    fun canBlockStay(worldIn: World, pos: BlockPos): Boolean {
         val down = worldIn.getBlockState(pos.down())
         return down.block != Blocks.AIR
     }
 
     private fun checkAndDropBlock(world: World, pos: BlockPos, state: IBlockState) {
-        if (!canBlockStay(world as World, pos, state)) {
+        if (!canBlockStay(world, pos)) {
             dropBlockAsItem(world, pos, state, 0)
             world.setBlockToAir(pos)
         }
     }
 
     override fun canPlaceBlockOnSide(worldIn: World, pos: BlockPos, side: EnumFacing): Boolean {
-        return canBlockStay(worldIn, pos, defaultState)
+        return canBlockStay(worldIn, pos)
     }
 
     override fun canPlaceBlockAt(worldIn: World, pos: BlockPos): Boolean {
-        return canBlockStay(worldIn, pos, defaultState)
+        return canBlockStay(worldIn, pos)
     }
 
     override fun neighborChanged(state: IBlockState, worldIn: World, pos: BlockPos, blockIn: Block, fromPos: BlockPos) {
@@ -128,6 +139,28 @@ abstract class AbstractPlaceableItem(name: String) : Block(Material.GLASS) {
     }
 
     override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item? {
-        return Item.REGISTRY.getObject(itemResourceLocation)
+        return item
     }
+}
+
+
+abstract class AbstractPlaceableItemBlock(name: String, val item: Item, block: Block) : ItemBlock(block) {
+
+    init {
+        translationKey = "crocodilite.$name"
+        registryName = item.registryName
+
+        creativeTab = item.creativeTab
+    }
+
+    override fun canPlaceBlockOnSide(
+        worldIn: World,
+        pos: BlockPos,
+        side: EnumFacing,
+        player: EntityPlayer,
+        stack: ItemStack
+    ): Boolean {
+        return player.isSneaking
+    }
+
 }
