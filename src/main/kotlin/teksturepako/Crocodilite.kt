@@ -72,17 +72,11 @@ object Crocodilite {
             ItemBlockOvergrownAndesite,
 
             ItemBlockQuartziteRock,
-            ItemBlockGraniteRock,
-            ItemBlockDioriteRock,
-            ItemBlockAndesiteRock,
             ItemBlockStick
         )
         private val modItemsQuark = arrayOf(
             ItemBlockOvergrownMarble,
-            ItemBlockOvergrownLimestone,
-
-            ItemBlockMarbleRock,
-            ItemBlockLimestoneRock
+            ItemBlockOvergrownLimestone
         )
 
         // Blocks
@@ -92,17 +86,11 @@ object Crocodilite {
             BlockOvergrownAndesite,
 
             BlockQuartziteRock,
-            BlockGraniteRock,
-            BlockDioriteRock,
-            BlockAndesiteRock,
             BlockStick
         )
         private val modBlocksQuark = arrayOf(
             BlockOvergrownMarble,
-            BlockOvergrownLimestone,
-
-            BlockMarbleRock,
-            BlockLimestoneRock
+            BlockOvergrownLimestone
         )
 
 
