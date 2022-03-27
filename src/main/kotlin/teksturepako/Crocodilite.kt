@@ -42,7 +42,7 @@ import teksturepako.block.placeable.*
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
-    const val VERSION = "2.3"
+    const val VERSION = "2.4"
     const val DEPENDENCIES =
         "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:dynamictrees;after:quark"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
