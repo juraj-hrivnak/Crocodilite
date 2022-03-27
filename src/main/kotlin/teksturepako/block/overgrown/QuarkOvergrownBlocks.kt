@@ -11,10 +11,10 @@ fun returnBlock(name: String): Block {
         when (name) {
             "HARD_MARBLE" -> HARD_MARBLE
             "HARD_LIMESTONE" -> HARD_LIMESTONE
-            else -> {Blocks.STONE}
+            else -> Blocks.AIR
         }
     } catch (e: NoClassDefFoundError) {
-        Blocks.STONE
+        Blocks.AIR
     }
 }
 

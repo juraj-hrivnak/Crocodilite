@@ -66,7 +66,7 @@ object Crocodilite {
     object RegistryHandler {
 
         // Items
-        private val modItems = arrayOf(
+        val modItems = arrayOf(
             ItemBlockOvergrownGranite,
             ItemBlockOvergrownDiorite,
             ItemBlockOvergrownAndesite,
@@ -74,13 +74,13 @@ object Crocodilite {
             ItemBlockQuartziteRock,
             ItemBlockStick
         )
-        private val modItemsQuark = arrayOf(
+        val modItemsQuark = arrayOf(
             ItemBlockOvergrownMarble,
             ItemBlockOvergrownLimestone
         )
 
         // Blocks
-        private val modBlocks = arrayOf(
+        val modBlocks = arrayOf(
             BlockOvergrownGranite,
             BlockOvergrownDiorite,
             BlockOvergrownAndesite,
@@ -88,7 +88,7 @@ object Crocodilite {
             BlockQuartziteRock,
             BlockStick
         )
-        private val modBlocksQuark = arrayOf(
+        val modBlocksQuark = arrayOf(
             BlockOvergrownMarble,
             BlockOvergrownLimestone
         )
