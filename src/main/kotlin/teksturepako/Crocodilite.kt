@@ -42,7 +42,7 @@ import teksturepako.block.placeable.*
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
-    const val VERSION = "2.4"
+    const val VERSION = "2.5"
     const val DEPENDENCIES =
         "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:dynamictrees;after:quark"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
@@ -76,7 +76,9 @@ object Crocodilite {
         )
         val modItemsQuark = arrayOf(
             ItemBlockOvergrownMarble,
-            ItemBlockOvergrownLimestone
+            ItemBlockOvergrownLimestone,
+            ItemBlockOvergrownSlate,
+            ItemBlockOvergrownJasper
         )
 
         // Blocks
@@ -90,9 +92,10 @@ object Crocodilite {
         )
         val modBlocksQuark = arrayOf(
             BlockOvergrownMarble,
-            BlockOvergrownLimestone
+            BlockOvergrownLimestone,
+            BlockOvergrownSlate,
+            BlockOvergrownJasper
         )
-
 
         @JvmStatic
         @SubscribeEvent
@@ -122,6 +125,8 @@ object Crocodilite {
                 if (isQuarkLoaded()) {
                     DirtHelper.registerSoil(BlockOvergrownMarble, DirtHelper.DIRTLIKE)
                     DirtHelper.registerSoil(BlockOvergrownLimestone, DirtHelper.DIRTLIKE)
+                    DirtHelper.registerSoil(BlockOvergrownSlate, DirtHelper.DIRTLIKE)
+                    DirtHelper.registerSoil(BlockOvergrownJasper, DirtHelper.DIRTLIKE)
                 }
             }
         }
@@ -160,6 +165,8 @@ object Crocodilite {
             if (isQuarkLoaded()) {
                 blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownMarble)
                 blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownLimestone)
+                blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownSlate)
+                blockColors.registerBlockColorHandler(grassColourHandler, BlockOvergrownJasper)
             }
         }
 
@@ -180,6 +187,8 @@ object Crocodilite {
             if (isQuarkLoaded()) {
                 itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownMarble)
                 itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownLimestone)
+                itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownSlate)
+                itemColors.registerItemColorHandler(itemBlockColourHandler, ItemBlockOvergrownJasper)
             }
 
         }

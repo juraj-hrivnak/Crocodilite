@@ -1,0 +1,33 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "quark:blocks/stone_jasper",
+            "bottom": "quark:blocks/stone_jasper",
+            "side": "quark:blocks/stone_jasper",
+            "top": "blocks/grass_top"
+        }
+    },
+    "variants": {
+        "snowy": {
+            "false": {
+                "model": "crocodilite:overgrown",
+                "textures": {
+                    "overlay": "crocodilite:blocks/overgrown_stone_side_overlay"
+                }
+            },
+            "true": {
+                "model": "crocodilite:overgrown_snowy",
+                "textures": {
+                    "overlay": "crocodilite:blocks/overgrown_stone_snowed_side_overlay"
+                }
+            }
+        },
+        "inventory": {
+            "model": "crocodilite:overgrown",
+            "textures": {
+                "overlay": "crocodilite:blocks/overgrown_stone_side_overlay"
+            }
+        }
+    }
+}
