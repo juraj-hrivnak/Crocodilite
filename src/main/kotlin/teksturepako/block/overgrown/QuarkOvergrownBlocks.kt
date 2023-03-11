@@ -7,6 +7,7 @@ import panda.divergentunderground.integration.QuarkCompat.HARD_LIMESTONE
 import vazkii.quark.world.feature.RevampStoneGen.slate
 import vazkii.quark.world.feature.RevampStoneGen.jasper
 
+
 // Prevent crash when Quark is not loaded
 fun returnBlock(name: String): Block {
     return try {
@@ -23,17 +24,17 @@ fun returnBlock(name: String): Block {
 }
 
 // Marble
-val BlockOvergrownMarble = object : AbstractOvergrown("overgrown_marble", returnBlock("HARD_MARBLE")) {}
-val ItemBlockOvergrownMarble = object : AbstractOvergrownItemBlock("overgrown_marble", BlockOvergrownMarble) {}
+val BlockOvergrownMarble = Overgrown("overgrown_marble", returnBlock("HARD_MARBLE"))
+val ItemBlockOvergrownMarble = OvergrownItemBlock("overgrown_marble", BlockOvergrownMarble)
 
 // Limestone
-val BlockOvergrownLimestone = object : AbstractOvergrown("overgrown_limestone", returnBlock("HARD_LIMESTONE")) {}
-val ItemBlockOvergrownLimestone = object : AbstractOvergrownItemBlock("overgrown_limestone", BlockOvergrownLimestone) {}
+val BlockOvergrownLimestone = Overgrown("overgrown_limestone", returnBlock("HARD_LIMESTONE"))
+val ItemBlockOvergrownLimestone = OvergrownItemBlock("overgrown_limestone", BlockOvergrownLimestone)
 
 // Slate
-val BlockOvergrownSlate = object : AbstractOvergrown("overgrown_slate", returnBlock("SLATE")) {}
-val ItemBlockOvergrownSlate = object : AbstractOvergrownItemBlock("overgrown_slate", BlockOvergrownSlate) {}
+val BlockOvergrownSlate = Overgrown("overgrown_slate", returnBlock("SLATE"))
+val ItemBlockOvergrownSlate = OvergrownItemBlock("overgrown_slate", BlockOvergrownSlate)
 
 // Jasper
-val BlockOvergrownJasper = object : AbstractOvergrown("overgrown_jasper", returnBlock("JASPER")) {}
-val ItemBlockOvergrownJasper = object : AbstractOvergrownItemBlock("overgrown_jasper", BlockOvergrownJasper) {}
+val BlockOvergrownJasper = Overgrown("overgrown_jasper", returnBlock("JASPER"))
+val ItemBlockOvergrownJasper = OvergrownItemBlock("overgrown_jasper", BlockOvergrownJasper)

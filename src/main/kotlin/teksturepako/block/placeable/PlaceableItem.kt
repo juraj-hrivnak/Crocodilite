@@ -1,3 +1,5 @@
+@file:Suppress("OVERRIDE_DEPRECATION")
+
 package teksturepako.block.placeable
 
 import net.minecraft.block.Block
@@ -25,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
 
 
-abstract class AbstractPlaceableItem(name: String, val item: Item, sound: SoundType) : Block(Material.GLASS) {
+class PlaceableItem(name: String, val item: Item, sound: SoundType) : Block(Material.GLASS) {
 
     init {
         translationKey = "crocodilite.$name"
@@ -35,7 +37,7 @@ abstract class AbstractPlaceableItem(name: String, val item: Item, sound: SoundT
         this.setHardness(0F)
         this.setResistance(0F)
 
-        creativeTab = item.creativeTab
+        creativeTab = item.creativeTab!!
     }
 
     override fun isReplaceable(worldIn: IBlockAccess, pos: BlockPos): Boolean {
@@ -55,18 +57,18 @@ abstract class AbstractPlaceableItem(name: String, val item: Item, sound: SoundT
         worldIn: World,
         pos: BlockPos,
         state: IBlockState,
-        playerIn: EntityPlayer?,
-        hand: EnumHand?,
-        heldItem: EnumFacing?,
-        side: Float,
+        playerIn: EntityPlayer,
+        hand: EnumHand,
+        heldItem: EnumFacing,
         hitX: Float,
-        hitY: Float
+        hitY: Float,
+        side: Float
     ): Boolean {
         worldIn.setBlockToAir(pos)
         worldIn.markBlockRangeForRenderUpdate(pos, pos)
         worldIn.scheduleUpdate(pos, this, tickRate(worldIn))
 
-        playerIn!!.swingArm(EnumHand.MAIN_HAND)
+        playerIn.swingArm(EnumHand.MAIN_HAND)
         playerIn.playSound(SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, 1.0f, 1.0f)
 
         this.launchDropAsEntity(state, worldIn, pos, ItemStack(item))
@@ -128,23 +130,21 @@ abstract class AbstractPlaceableItem(name: String, val item: Item, sound: SoundT
     }
 
     // Rendering of the blocks behind
-    @Deprecated("")
     override fun isOpaqueCube(state: IBlockState): Boolean {
         return false
     }
 
-    @Deprecated("")
     override fun isFullCube(state: IBlockState): Boolean {
         return false
     }
 
-    override fun getItemDropped(state: IBlockState?, rand: Random?, fortune: Int): Item? {
+    override fun getItemDropped(state: IBlockState, rand: Random, fortune: Int): Item {
         return item
     }
 }
 
 
-abstract class AbstractPlaceableItemBlock(name: String, val item: Item, block: Block) : ItemBlock(block) {
+class PlaceableItemBlock(name: String, val item: Item, block: Block) : ItemBlock(block) {
 
     init {
         translationKey = "crocodilite.$name"

@@ -1,3 +1,5 @@
+@file:Suppress( "OVERRIDE_DEPRECATION")
+
 package teksturepako.block.overgrown
 
 import net.minecraft.block.*
@@ -19,7 +21,7 @@ import panda.divergentunderground.DivergentUnderground
 import java.util.*
 
 
-abstract class AbstractOvergrown(name: String, val block: Block) : Block(Material.GRASS), IGrowable {
+class Overgrown(name: String, val block: Block) : Block(Material.GRASS), IGrowable {
 
     init {
         translationKey = "crocodilite.$name"
@@ -35,13 +37,13 @@ abstract class AbstractOvergrown(name: String, val block: Block) : Block(Materia
             .withProperty(BlockGrass.SNOWY, false)
     }
 
-    override fun updateTick(world: World, pos: BlockPos, state: IBlockState?, rand: Random) {
+    override fun updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random) {
         if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2) {
             world.setBlockState(pos, block.defaultState)
         }
     }
 
-    override fun getActualState(state: IBlockState, worldIn: IBlockAccess, pos: BlockPos): IBlockState? {
+    override fun getActualState(state: IBlockState, worldIn: IBlockAccess, pos: BlockPos): IBlockState {
         val block = worldIn.getBlockState(pos.up()).block
         return state.withProperty(BlockGrass.SNOWY, (block == Blocks.SNOW || block == Blocks.SNOW_LAYER))
     }
@@ -50,7 +52,7 @@ abstract class AbstractOvergrown(name: String, val block: Block) : Block(Materia
         return defaultState
     }
 
-    override fun getMetaFromState(state: IBlockState?): Int {
+    override fun getMetaFromState(state: IBlockState): Int {
         return 0
     }
 
@@ -68,7 +70,10 @@ abstract class AbstractOvergrown(name: String, val block: Block) : Block(Materia
     }
 
     override fun canSustainPlant(
-        state: IBlockState?, world: IBlockAccess?, pos: BlockPos, direction: EnumFacing,
+        state: IBlockState,
+        world: IBlockAccess,
+        pos: BlockPos,
+        direction: EnumFacing,
         plantable: IPlantable
     ): Boolean {
         val plantType: EnumPlantType = plantable.getPlantType(world, pos.offset(direction))
@@ -84,11 +89,11 @@ abstract class AbstractOvergrown(name: String, val block: Block) : Block(Materia
         return canGrow(worldIn, pos, state, false)
     }
 
-    override fun canGrow(worldIn: World?, pos: BlockPos?, state: IBlockState?, isClient: Boolean): Boolean {
+    override fun canGrow(worldIn: World, pos: BlockPos, state: IBlockState, isClient: Boolean): Boolean {
         return true
     }
 
-    override fun grow(worldIn: World, rand: Random, pos: BlockPos, state: IBlockState?) {
+    override fun grow(worldIn: World, rand: Random, pos: BlockPos, state: IBlockState) {
         val blockpos = pos.up()
         for (i in 0..127) {
             var blockpos1 = blockpos
@@ -114,7 +119,7 @@ abstract class AbstractOvergrown(name: String, val block: Block) : Block(Materia
     }
 }
 
-abstract class AbstractOvergrownItemBlock(name: String, block: Block) : ItemBlock(block) {
+class OvergrownItemBlock(name: String, block: Block) : ItemBlock(block) {
 
     init {
         translationKey = "crocodilite.$name"

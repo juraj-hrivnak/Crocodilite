@@ -42,7 +42,7 @@ import teksturepako.block.placeable.*
 object Crocodilite {
     const val MOD_ID = "crocodilite"
     const val MOD_NAME = "Crocodilite"
-    const val VERSION = "2.5"
+    const val VERSION = "2.6"
     const val DEPENDENCIES =
         "required-after:forgelin@[1.8.4,);required-after:divergentunderground;after:dynamictrees;after:quark"
     const val ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2,)"
@@ -51,16 +51,13 @@ object Crocodilite {
     fun isDynamicTreesLoaded(): Boolean = (Loader.isModLoaded("dynamictrees"))
 
     @Mod.EventHandler
-    fun preinit(event: FMLPreInitializationEvent) {
-    }
+    fun preinit(event: FMLPreInitializationEvent) {}
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {}
 
     @Mod.EventHandler
-    fun postinit(event: FMLPostInitializationEvent) {
-
-    }
+    fun postinit(event: FMLPostInitializationEvent) {}
 
     @Mod.EventBusSubscriber
     object RegistryHandler {
@@ -72,7 +69,8 @@ object Crocodilite {
             ItemBlockOvergrownAndesite,
 
             ItemBlockQuartziteRock,
-            ItemBlockStick
+            ItemBlockStick,
+            ItemBlockFlint
         )
         val modItemsQuark = arrayOf(
             ItemBlockOvergrownMarble,
@@ -88,7 +86,8 @@ object Crocodilite {
             BlockOvergrownAndesite,
 
             BlockQuartziteRock,
-            BlockStick
+            BlockStick,
+            BlockFlint
         )
         val modBlocksQuark = arrayOf(
             BlockOvergrownMarble,
